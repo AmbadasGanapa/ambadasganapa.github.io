@@ -28,6 +28,8 @@ html, body {
   overflow-x: hidden;
 }
 
+
+
 /* Prevent overflowing on all child elements */
 * {
   box-sizing: border-box;
@@ -961,6 +963,10 @@ body[data-bs-theme="dark"] #education { /* Added #education here */
         display: block !important; /* Ensure lead is visible on large screens */
     }
 }
+
+
+
+
 
 
 
