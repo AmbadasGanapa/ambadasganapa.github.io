@@ -146,7 +146,7 @@ class="list-unstyled text-start">
 
                         <div class="col-md-12 mb-4" data-aos="fade-up" data-aos-delay="300">
                             <div class="skill-category-card p-4 rounded shadow">
-                                <h4>Tools & Platforms</h4>
+                                <h4>Tools & Methodologies</h4>
                                 <ul class="list-inline text-center">
                                     <li class="list-inline-item me-3 mb-2"><i class="fas fa-chart-bar fa-2x"></i> POWER BI</li>
                                     <li class="list-inline-item me-3 mb-2"><i class="fab fa-wordpress fa-2x"></i> Wordpress</li>
@@ -163,6 +163,7 @@ class="list-inline-item me-3 mb-2"><i class="fas fa-code fa-2x"></i> LeetCode</l
                                     <li class="list-inline-item me-3 mb-2"><i class="fa-solid fa-brain"></i> GFG</li>
                                     <li class="list-inline-item me-3 mb-2"><i class="fa-solid fa-robot"></i>AI Tools</li>
                                   </ul>
+                                  
                             </div>
                         </div>
 
@@ -598,5 +599,24 @@ Ambadas Ganapa 2025</p>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/script.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0">
+      <img id="modalImage" class="img-fluid rounded" alt="Preview">
+    </div>
+  </div>
+</div>
+<script>
+  document.querySelectorAll("img").forEach(img => {
+    img.style.cursor = "pointer";
+    img.addEventListener("click", function () {
+      document.getElementById("modalImage").src = this.src;
+      new bootstrap.Modal(document.getElementById('imageModal')).show();
+    });
+  });
+</script>
+
 </body>
 </html>

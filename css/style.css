@@ -21,9 +21,24 @@
     --contact-icon-color: var(--primary-color);
     --contact-link-color: var(--text-color);
 }
-body{
-    background-color: gray;
+
+/* Remove horizontal scroll */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
 }
+
+/* Prevent overflowing on all child elements */
+* {
+  box-sizing: border-box;
+}
+
+.container, .container-fluid {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+
 /* Dark Mode Variables (Keeping previous dark theme as requested) */
 body[data-bs-theme="dark"] {
     --primary-color: #D4A373; /* Warm Ochre/Bronze for highlights in dark mode */
@@ -206,7 +221,7 @@ a:hover {
 
 /* General Section Styling */
 .content-section {
-    padding: 8rem 0;
+    padding: 4rem 0;
     background-color: var(--background-color);
     transition: background-color 0.3s ease;
 }
@@ -798,6 +813,10 @@ body[data-bs-theme="dark"] #education { /* Added #education here */
 }
 
 /* Small devices (landscape phones, 576px and up) */
+
+
+
+
 @media (min-width: 576px) and (max-width: 767.98px) {
     .masthead h1 {
         font-size: 2.8rem;
@@ -832,6 +851,27 @@ body[data-bs-theme="dark"] #education { /* Added #education here */
 
     #projects .card-img-top {
         height: 180px;
+    }
+}
+
+
+/* style.css */
+
+/* ... existing CSS ... */
+
+@media (max-width: 767.98px) {
+    #skills .skill-category-card .list-inline-item {
+        flex: 0 0 48%; /* Roughly half width, adjust as needed */
+        max-width: 48%; /* Roughly half width, adjust as needed */
+        margin-right: 0; /* Remove default margin */
+        margin-left: 0; /* Remove default margin */
+        margin-bottom: 1rem !important; /* Add some vertical spacing */
+    }
+
+    #skills .skill-category-card .list-inline {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around; /* Distribute items evenly */
     }
 }
 
@@ -921,3 +961,7 @@ body[data-bs-theme="dark"] #education { /* Added #education here */
         display: block !important; /* Ensure lead is visible on large screens */
     }
 }
+
+
+
+

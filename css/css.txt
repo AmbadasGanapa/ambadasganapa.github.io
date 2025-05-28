@@ -21,7 +21,9 @@
     --contact-icon-color: var(--primary-color);
     --contact-link-color: var(--text-color);
 }
-
+body{
+    background-color: gray;
+}
 /* Dark Mode Variables (Keeping previous dark theme as requested) */
 body[data-bs-theme="dark"] {
     --primary-color: #D4A373; /* Warm Ochre/Bronze for highlights in dark mode */
@@ -54,7 +56,16 @@ body {
     scroll-behavior: smooth;
     line-height: 1.6; /* Improved readability */
 }
-
+.ProjTools{
+    border : 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    margin: 0.2rem;
+    padding: 0.25rem;
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    color: var(--text-color);
+}
 /* General Link Styling */
 a {
     color: var(--primary-color);
@@ -309,7 +320,6 @@ a:hover {
     align-items: center;
     text-align: center; /* Center text below icon */
     transition: color 0.3s ease;
-
     /* Responsive column sizing */
     flex: 0 0 calc(50% - 20px); /* Default to 2 columns on extra small/small screens */
     max-width: calc(50% - 20px);
@@ -386,9 +396,12 @@ a:hover {
 #projects .card-text {
     color: var(--secondary-color);
     font-size: 1rem;
+    text-align: justify;
     line-height: 1.6;
 }
-
+.viewCertfication{
+    color:rgb(32, 106, 244);
+}
 #projects .card-footer {
     background-color: var(--background-color); /* Blends into background */
     border-top: 1px solid var(--border-color);
@@ -430,6 +443,34 @@ a:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Project Filter Buttons */
+.project-filter-btn {
+    transition: all 0.3s ease;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.2rem;
+}
+
+.project-filter-btn.active {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--card-background); /* White text */
+    box-shadow: 0 4px 8px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.project-filter-btn:hover:not(.active) {
+    background-color: var(--primary-color);
+    color: var(--card-background);
+    border-color: var(--primary-color);
+    opacity: 0.9;
+}
+
+/* Hidden project item */
+.project-card-item.hidden {
+    display: none !important;
+}
+
 
 /* Achievements Section */
 .achievement-card {
@@ -681,7 +722,8 @@ body[data-bs-theme="light"] .footer {
 
 /* Dark mode specific background colors for sections */
 body[data-bs-theme="dark"] #skills,
-body[data-bs-theme="dark"] #achievements {
+body[data-bs-theme="dark"] #achievements,
+body[data-bs-theme="dark"] #education { /* Added #education here */
     background-color: #2A383F; /* A slightly darker teal to make sections stand out */
 }
 
