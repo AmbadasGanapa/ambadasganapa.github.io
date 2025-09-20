@@ -84,7 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-
+document.addEventListener("click", (event) => {
+  if (!hamburger.contains(event.target) && !navLinks.contains(event.target)) {
+    navLinks.classList.remove("active");
+  }
+});
 
 // project filter start here 
 
