@@ -1,0 +1,201 @@
+/* Tabs — centered wrapper */
+.tabsWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 0.4rem;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.tab:hover {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.tabActive {
+  color: #fff;
+  background: var(--accent);
+  box-shadow: 0 4px 14px rgba(108, 99, 255, 0.35);
+}
+
+.tabActive:hover {
+  color: #fff;
+  background: var(--accent-light);
+}
+
+/* Skills Grid */
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* Skill Block */
+.skillBlock {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  cursor: default;
+  transition: border-color 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.skillBlock:hover {
+  border-color: var(--border-strong);
+}
+
+.skillTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.skillName {
+  font-size: 0.93rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.skillPct {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.barTrack {
+  width: 100%;
+  height: 7px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+[data-theme="dark"] .barTrack,
+:root:not([data-theme="light"]) .barTrack {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.barFill {
+  height: 100%;
+  border-radius: 4px;
+}
+
+/* ── Tools Marquee ── */
+.toolsSection {
+  margin-top: 1.5rem;
+}
+
+.toolsLabel {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.marqueeWrapper {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 1.1rem;
+  width: max-content;
+  animation: marqueeScroll 32s linear infinite;
+}
+
+.marqueeWrapper:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Tool Block — bigger, with real logo */
+.toolBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.1rem 1.4rem;
+  min-width: 120px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.toolLogo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  display: block;
+}
+
+.toolName {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .tabs {
+    gap: 0.3rem;
+    padding: 0.3rem;
+  }
+  .tab {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  .skillsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .skillsGrid {
+    grid-template-columns: 1fr;
+  }
+}

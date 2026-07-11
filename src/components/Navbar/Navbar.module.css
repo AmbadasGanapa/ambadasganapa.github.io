@@ -1,0 +1,142 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 0;
+  transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(var(--bg-secondary-rgb, 26, 26, 26), 0.92);
+  background: color-mix(in srgb, var(--bg-secondary) 92%, transparent);
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.navContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  cursor: pointer;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.dot {
+  color: var(--accent);
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  list-style: none;
+  flex-wrap: nowrap;
+}
+
+.navLink {
+  padding: 0.35rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.navLink:hover,
+.navLink.active {
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.navRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.themeBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.themeBtn:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.menuBtn {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* Mobile Menu */
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  padding: 0.5rem 1.5rem 1.25rem;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
+}
+
+.mobileLink {
+  padding: 0.9rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mobileLink:last-child {
+  border-bottom: none;
+}
+
+.mobileLink:hover {
+  color: var(--accent);
+}
+
+@media (max-width: 900px) {
+  .navLinks {
+    display: none;
+  }
+  .menuBtn {
+    display: flex;
+  }
+}

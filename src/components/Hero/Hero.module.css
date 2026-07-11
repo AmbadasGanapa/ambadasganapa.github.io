@@ -1,0 +1,231 @@
+.hero {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: var(--hero-bg, var(--bg-primary));
+  position: relative;
+  overflow: hidden;
+  transition: background 0.3s ease;
+}
+
+:root {
+  --hero-bg: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 50%, #16213e 100%);
+}
+
+[data-theme="light"] .hero,
+[data-theme="light"] .hero {
+  background: linear-gradient(135deg, #f0f2f5 0%, #e8eaf6 50%, #ede7f6 100%);
+}
+
+/* Subtle radial glow */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroContainer {
+  width: 100%;
+  max-width: 100%;
+  padding: 0 6vw;
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+/* ===== LEFT ===== */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.greeting {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  color: #f5c518;
+  background: linear-gradient(90deg, #f5c518, #ffd700, #e6a817);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.iam {
+  font-family: 'Dancing Script', 'Brush Script MT', cursive;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.name {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--accent-light);
+  font-weight: 400;
+  margin: 0;
+}
+
+.bio {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  text-align: justify;
+  max-width: 580px;
+  margin: 0;
+}
+
+.ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.ctaBtn {
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.socials a {
+  color: var(--text-muted);
+  display: flex;
+  transition: all 0.2s ease;
+}
+
+.socials a:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+}
+
+/* ===== RIGHT — AVATAR ===== */
+.avatarWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatarRing {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), #a78bfa, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  box-shadow: 0 0 60px rgba(108, 99, 255, 0.35), 0 0 120px rgba(108, 99, 255, 0.15);
+  animation: floatAvatar 4s ease-in-out infinite;
+  overflow: visible;
+}
+
+.avatarRing::before,
+.avatarRing::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatarRing::before {
+  width: 320px;
+  height: 320px;
+  border: 2px dashed rgba(255, 255, 255, 0.45);
+  animation: rotateRing 16s linear infinite;
+  opacity: 0.9;
+}
+
+.avatarRing::after {
+  width: 360px;
+  height: 360px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  animation: rotateRingReverse 10s linear infinite;
+  opacity: 0.75;
+}
+
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@keyframes floatAvatar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes rotateRing {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes rotateRingReverse {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .content {
+    order: 2;
+    align-items: center;
+  }
+
+  .avatarWrapper {
+    order: 1;
+  }
+
+  .avatarRing {
+    width: 200px;
+    height: 200px;
+  }
+
+  .avatar {
+    font-size: 3rem;
+  }
+
+  .bio {
+    max-width: 100%;
+  }
+
+  .ctas, .socials {
+    justify-content: center;
+  }
+}
