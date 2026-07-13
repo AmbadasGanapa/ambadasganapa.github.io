@@ -152,6 +152,7 @@ a:hover {
 
 .masthead h1 {
     font-size: 3.8rem;
+
     font-weight: 800;
     color: var(--text-color);
     line-height: 1.2;
@@ -1356,11 +1357,3 @@ body[data-bs-theme="dark"] #education { /* Added #education here */
         display: block !important; /* Ensure lead is visible on large screens */
     }
 }
-
-
-
-
-
-
-
-
