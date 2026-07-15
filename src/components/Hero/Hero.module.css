@@ -203,6 +203,11 @@
     padding: 6rem 2rem 4rem;
   }
 
+  .name {
+    font-size: clamp(2rem, 8vw, 3.2rem);
+    white-space: nowrap;
+  }
+
   .content {
     order: 2;
     align-items: center;
