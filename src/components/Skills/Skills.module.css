@@ -199,3 +199,37 @@
     grid-template-columns: 1fr;
   }
 }
+
+.resumeActions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.resumeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.resumeBtn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(79, 70, 229, 0.12);
+}
+

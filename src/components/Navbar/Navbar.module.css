@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 9999;
   padding: 1rem 0;
   transition: all 0.3s ease;
 }
@@ -102,13 +102,19 @@
 
 /* Mobile Menu */
 .mobileMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   display: flex;
   flex-direction: column;
   background: var(--bg-secondary);
   border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   padding: 0.5rem 1.5rem 1.25rem;
-  max-height: calc(100vh - 60px);
+  max-height: calc(100vh - 70px);
   overflow-y: auto;
+  box-shadow: var(--shadow);
 }
 
 .mobileLink {
@@ -132,7 +138,7 @@
   color: var(--accent);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .navLinks {
     display: none;
   }

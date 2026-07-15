@@ -28,7 +28,7 @@ export default function Navbar({ theme, toggleTheme }) {
   }, []);
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <nav className={`${styles.navbar} ${scrolled || menuOpen ? styles.scrolled : ''}`}>
       <div className={`container ${styles.navContainer}`}>
         {/* Logo */}
         <Link to="hero" smooth duration={500} className={styles.logo}>

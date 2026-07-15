@@ -1,38 +1,642 @@
-.hobbies { background: linear-gradient(180deg, var(--bg-primary), var(--bg-secondary)); }
+.hobbies {
+  background: var(--bg-primary);
+  padding: 5rem 0;
+}
+
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2.25rem;
+  margin-top: 3.5rem;
 }
+
+/* Card Styling */
 .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+  border-radius: 20px;
+  padding: 2.25rem 2rem;
   box-shadow: var(--shadow);
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow: hidden;
 }
-.icon {
+
+.card:hover {
+  border-color: var(--accent);
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px rgba(108, 99, 255, 0.12);
+}
+
+.cardGlow {
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.iconContainer {
   width: 48px;
   height: 48px;
+  border-radius: 12px;
+  background: var(--accent-dim);
   display: grid;
   place-items: center;
-  border-radius: 50%;
-  background: var(--accent-dim);
-  font-size: 1.35rem;
-  margin-bottom: 0.9rem;
+  color: var(--accent-light);
 }
+
+.hobbyIcon {
+  font-size: 1.5rem;
+}
+
 .card h3 {
-  font-size: 1.05rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
   color: var(--text-primary);
 }
-.card p {
-  color: var(--text-secondary);
+
+.desc {
   font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
-@media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr 1fr; }
+
+/* Stats Box */
+.statsBox {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
 }
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.statLabel {
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.statValText {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.statValCount {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+/* Buttons */
+.learnMoreBtn {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--accent-light);
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: gap 0.25s ease, color 0.25s ease;
+  border: none;
+  background: none;
+  padding: 0;
+}
+
+.learnMoreBtn:hover {
+  color: var(--accent);
+  gap: 0.6rem;
+}
+
+/* Modal Styling */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+}
+
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  width: 100%;
+  max-width: 680px;
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.modalScrollArea {
+  overflow-y: auto;
+  padding: 2.5rem;
+  box-sizing: border-box;
+}
+
+.modalCloseBtn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s ease;
+}
+
+.modalCloseBtn:hover {
+  color: var(--text-primary);
+  background: var(--border-strong);
+  transform: rotate(90deg);
+}
+
+.modalContentBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.modalHeaderIcon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: var(--accent-dim);
+  display: grid;
+  place-items: center;
+  color: var(--accent-light);
+  margin-bottom: 0.5rem;
+}
+
+.modalContentBody h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.modalContentBody p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.modalSectionLabel {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.25rem 0 0;
+  border-left: 3px solid var(--accent);
+  padding-left: 0.6rem;
+}
+
+/* Coding details specific */
+.langListHorizontal {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.langListHorizontal li {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.4rem 0.8rem;
+}
+
+.platformsInlineGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.platformBadge {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.platformBadge:hover {
+  color: var(--accent-light);
+  border-color: var(--accent);
+  background: rgba(108, 99, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+/* Stats inline box inside modal */
+.statsBoxInline {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.statsBoxInline .statRow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+}
+
+.statsBoxInline .statLabel {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.statsBoxInline .statVal {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--accent-light);
+}
+
+/* Cricket section cutouts */
+.cutoutWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.cutoutCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 170px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease;
+}
+
+.cutoutCard:hover {
+  transform: scale(1.04);
+}
+
+.cricketCutout {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.35));
+}
+
+.cutoutLabel {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.cricketDetailsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.cricketStatCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.1rem 0.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.cricketLabel {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cricketValue {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.playerFavBox {
+  display: flex;
+  align-items: center;
+  gap: 1.1rem;
+  background: rgba(16, 185, 129, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 16px;
+  padding: 0.85rem 1.25rem;
+  margin-top: 1rem;
+}
+
+.favPlayerPhoto {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #10b981;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.favPlayerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.favLabel {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.favValue {
+  color: #10b981;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Travelling specific transit modes row */
+.travelModesRow {
+  display: flex;
+  justify-content: space-around;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+}
+
+.modeIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 1.4rem;
+  transition: color 0.25s ease;
+}
+
+.modeIcon span {
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.modeIcon:hover {
+  color: var(--accent-light);
+}
+
+/* Map container styles */
+.mapContainer {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.mapHeader h4 {
+  font-size: 1.05rem !important;
+  font-weight: 600;
+  margin: 0 0 0.25rem 0;
+  color: var(--text-primary);
+}
+
+.mapHeader p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.mapWrapper {
+  display: block;
+  width: 100%;
+}
+
+.leafletMap {
+  width: 100%;
+  height: 420px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  z-index: 1;
+}
+
+/* Tooltips */
+.tooltipHome,
+.tooltipDest {
+  background: rgba(18, 18, 18, 0.85) !important;
+  backdrop-filter: blur(4px);
+  border-radius: 8px !important;
+  padding: 0.35rem 0.75rem !important;
+  font-size: 0.76rem !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35) !important;
+  border: 1.5px solid !important;
+  white-space: nowrap;
+  pointer-events: none !important;
+}
+
+.tooltipHome {
+  color: #10b981 !important; /* Green birthplace color */
+  border-color: #10b981 !important;
+}
+
+.tooltipDest {
+  color: var(--accent-light) !important;
+  border-color: var(--accent) !important;
+}
+
+.tooltipHome::before,
+.tooltipDest::before {
+  border-color: transparent !important;
+}
+
+/* Path overlay style */
+.leafletPulsePath {
+  stroke-dasharray: 6 10;
+  animation: leafletDashFlow 2.2s linear infinite;
+}
+
+@keyframes leafletDashFlow {
+  to {
+    stroke-dashoffset: -32;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .modal {
+    max-height: 92vh;
+  }
+
+  .modalScrollArea {
+    padding: 1.75rem;
+  }
+
+  .cricketDetailsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .statsBoxInline {
+    grid-template-columns: 1fr;
+  }
+
+  .leafletMap {
+    height: 350px;
+  }
+}
+
+.leetCodeCardWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.leetCodeCard {
+  max-width: 100%;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease;
+}
+
+.leetCodeCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+.hackerRankGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.hrBadgeCard {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.hrBadgeCard:hover {
+  border-color: #f5c518;
+  transform: translateY(-2px);
+}
+
+.hrBadgeIcon {
+  font-size: 1.6rem;
+  color: #f5c518;
+}
+
+.hrBadgeInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.hrBadgeInfo h6 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.hrStars {
+  font-size: 0.72rem;
+  color: #f5c518;
+  letter-spacing: 0.05em;
+}
+
+.hrBadgeLevel {
+  font-size: 0.75rem;
+  color: #f5a623;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
+  .hackerRankGrid {
+    grid-template-columns: 1fr;
+  }
 }

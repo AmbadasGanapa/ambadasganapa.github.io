@@ -14,13 +14,13 @@ export const personalInfo = {
   vision: 'To leverage cloud computing, data, and artificial intelligence to build innovative solutions that solve real-world challenges, empower businesses, and create a meaningful impact through technology.',
   mission: 'To continuously learn, innovate, and develop scalable software solutions while embracing emerging technologies and delivering value through reliable, intelligent, and user-centric applications.',
   languagesSpoken: ['English', 'Hindi', 'Marathi', 'Kannada', 'Telugu'],
-  resumeUrl: "/Resume.pdf",
+  resumeUrl: "/resumes/Ambadas Ganapa Software Developer Resume.pdf",
   socials: {
     github: "https://github.com/AmbadasGanapa/",
     linkedin: "https://linkedin.com/in/ambadasganapa",
-    instagram: "",
+    instagram: "https://www.instagram.com/amul_ganapa33/",
     twitter: "",
-    telegram: "",
+    telegram: "https://t.me/AmulG31",
     leetcode: "https://leetcode.com/u/AmbadasGanapa/",
     hackerrank: "https://www.hackerrank.com/profile/ambadasganapa31",
     whatsapp: "https://wa.me/7757082080",
@@ -81,20 +81,35 @@ export const skills = {
 
 export const hobbies = [
   {
-    title: 'Reading & Learning',
-    icon: '📚',
-    description: 'I enjoy reading about technology, product design, and practical problem-solving to stay inspired.',
+    id: 'coding',
+    title: 'Coding & Development',
+    icon: '💻',
+    description: "I love exploring new programming languages, building innovative projects, and solving complex problems through code. It's not just my profession, it's my passion!",
+    stats: [
+      { label: 'Languages Learned', value: 8 },
+      { label: 'Projects Built', value: 10, suffix: '+' }
+    ]
   },
   {
-    title: 'Writing & Sharing',
-    icon: '✍️',
-    description: 'I like documenting ideas, building thoughtful write-ups, and sharing what I learn with others.',
+    id: 'cricket',
+    title: 'Playing Cricket',
+    icon: '🏏',
+    description: "Cricket is my favorite sport! I enjoy both playing and watching matches. It teaches teamwork, strategy, and helps me stay physically active.",
+    stats: [
+      { label: 'Favorite Position', value: 'All-rounder', isText: true },
+      { label: 'Favorite Player', value: 'Hardik Pandya', isText: true }
+    ]
   },
   {
-    title: 'Music & Reflection',
-    icon: '🎧',
-    description: 'Music is a steady companion while I code, think, and recharge between projects.',
-  },
+    id: 'travelling',
+    title: 'Travelling & Exploring',
+    icon: '✈️',
+    description: "I love discovering new places, experiencing different cultures, and capturing beautiful moments. Travel broadens my perspective and inspires creativity.",
+    stats: [
+      { label: 'Places Visited', value: 20, suffix: '+' },
+      { label: 'Modes Used', value: 'Bike, Car, Bus, Train, Ship', isText: true }
+    ]
+  }
 ];
 
 export const projects = [
@@ -297,7 +312,7 @@ export const experience = [
       "Gained hands-on experience in database management, debugging, and application deployment."
     ],
     liveUrl: "https://www.ganitwala.com",
-    certificateUrl: "/images/Lemonade Software Developer Certificate.pdf",
+    certificateUrl: "/images/Ganitwala.pdf",
   },
   {
     role: "Tutor ",

@@ -96,21 +96,70 @@ export default function Skills() {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
-            className={styles.skillsGrid}
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25 }}
           >
-            {skills[activeTab].map((skill, i) => (
-              <SkillBlock
-                key={skill.name}
-                name={skill.name}
-                level={skill.level}
-                index={i}
-                color={categories.find(c => c.key === activeTab).color}
-              />
-            ))}
+            <div className={styles.skillsGrid}>
+              {skills[activeTab].map((skill, i) => (
+                <SkillBlock
+                  key={skill.name}
+                  name={skill.name}
+                  level={skill.level}
+                  index={i}
+                  color={categories.find(c => c.key === activeTab).color}
+                />
+              ))}
+            </div>
+
+            {/* Resume buttons conditionally based on active tab */}
+            {activeTab === 'dataAnalytics' && (
+              <div className={styles.resumeActions}>
+                <a
+                  href="/resumes/Ambadas%20Ganapa%20DataAnalyst%20Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.resumeBtn}
+                >
+                  📊 View Resume (Data Analyst)
+                </a>
+              </div>
+            )}
+
+            {activeTab === 'webBackend' && (
+              <div className={styles.resumeActions}>
+                <a
+                  href="/resumes/Ambadas%20Ganapa%20Software%20Developer%20Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.resumeBtn}
+                >
+                  🌐 View Resume (Software Developer)
+                </a>
+              </div>
+            )}
+
+            {activeTab === 'aiCloud' && (
+              <div className={styles.resumeActions}>
+                <a
+                  href="/resumes/Ambads%20Ganapa%20AI%20Engineer%20.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.resumeBtn}
+                >
+                  🤖 View Resume (AI)
+                </a>
+                <a
+                  href="/resumes/Ambadas%20Ganapa%20Cloud%20Resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.resumeBtn}
+                >
+                  ☁️ View Resume (Cloud)
+                </a>
+              </div>
+            )}
           </motion.div>
         </AnimatePresence>
 

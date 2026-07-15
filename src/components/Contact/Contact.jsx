@@ -1,9 +1,26 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
 import { motion } from 'framer-motion';
-import { FiMail, FiPhone, FiMapPin, FiSend, FiGithub, FiLinkedin, FiInstagram, FiTwitter } from 'react-icons/fi';
-import { FaWhatsapp, FaTelegramPlane } from 'react-icons/fa';
-import { SiLeetcode, SiHackerrank } from 'react-icons/si';
+import { 
+  FiMail, 
+  FiPhone, 
+  FiMapPin, 
+  FiSend, 
+  FiGithub, 
+  FiLinkedin, 
+  FiInstagram, 
+  FiFacebook 
+} from 'react-icons/fi';
+import { FaWhatsapp } from 'react-icons/fa';
+import { 
+  SiLeetcode, 
+  SiHackerrank, 
+  SiGeeksforgeeks, 
+  SiMedium, 
+  SiSnapchat, 
+  SiTelegram, 
+  SiX 
+} from 'react-icons/si';
 import { personalInfo } from '../../data/portfolioData';
 import styles from './Contact.module.css';
 
@@ -14,16 +31,23 @@ export default function Contact() {
   const isDark = typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme') !== 'light';
   const ghTheme = isDark ? 'tokyonight&bg_color=1e1e1e' : 'default&bg_color=ffffff';
   const ghTitleColor = isDark ? '6c63ff' : '5b52e8';
+
   const socialLinks = [
-    { href: personalInfo.socials.github, icon: <FiGithub />, label: 'GitHub' },
-    { href: personalInfo.socials.linkedin, icon: <FiLinkedin />, label: 'LinkedIn' },
-    { href: personalInfo.socials.instagram, icon: <FiInstagram />, label: 'Instagram' },
-    { href: personalInfo.socials.whatsapp, icon: <FaWhatsapp />, label: 'WhatsApp' },
-    { href: personalInfo.socials.twitter, icon: <FiTwitter />, label: 'Twitter' },
-    { href: personalInfo.socials.telegram, icon: <FaTelegramPlane />, label: 'Telegram' },
-    { href: personalInfo.socials.leetcode, icon: <SiLeetcode />, label: 'LeetCode' },
-    { href: personalInfo.socials.hackerrank, icon: <SiHackerrank />, label: 'HackerRank' },
-  ].filter(link => link.href);
+    { href: personalInfo.socials.linkedin || "https://linkedin.com/in/ambadasganapa", icon: <FiLinkedin />, label: 'LinkedIn' },
+    { href: personalInfo.socials.github || "https://github.com/AmbadasGanapa/", icon: <FiGithub />, label: 'GitHub' },
+    { href: personalInfo.socials.leetcode || "https://leetcode.com/u/AmbadasGanapa/", icon: <SiLeetcode />, label: 'LeetCode' },
+    { href: "https://www.geeksforgeeks.org/profile/ambadasganapa31?tab=activity", icon: <SiGeeksforgeeks />, label: 'GeeksforGeeks' },
+    { href: personalInfo.socials.hackerrank || "https://www.hackerrank.com/profile/ambadasganapa31", icon: <SiHackerrank />, label: 'HackerRank' },
+    { href: "https://x.com/AmbadasGanapa", icon: <SiX />, label: 'X' },
+    { href: personalInfo.socials.instagram || "https://instagram.com/ambadas_ganapa/", icon: <FiInstagram />, label: 'Instagram' },
+    { href: "https://facebook.com/ambadas.ganapa", icon: <FiFacebook />, label: 'Facebook' },
+    { href: "https://snapchat.com/add/ambadas_ganapa", icon: <SiSnapchat />, label: 'Snapchat' },
+    { href: personalInfo.socials.telegram || "https://t.me/ambadas_ganapa", icon: <SiTelegram />, label: 'Telegram' },
+    { href: "https://medium.com/@ambadasganapa31", icon: <SiMedium />, label: 'Medium' },
+    { href: personalInfo.socials.whatsapp || "https://wa.me/7757082080", icon: <FaWhatsapp />, label: 'WhatsApp' },
+    { href: `mailto:${personalInfo.email || "ambadasganapa31@gmail.com"}`, icon: <FiMail />, label: 'Email' },
+    { href: `tel:${personalInfo.phone || "+917757082080"}`, icon: <FiPhone />, label: 'Call' }
+  ];
 
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -107,17 +131,22 @@ export default function Contact() {
 
             <div className={styles.socials}>
               {socialLinks.map(link => (
-                <a key={link.label} href={link.href} target="_blank" rel="noreferrer" aria-label={link.label}>
+                <a 
+                  key={link.label} 
+                  href={link.href} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  aria-label={link.label}
+                  className={styles.socialIcon}
+                  title={link.label}
+                >
                   {link.icon}
                 </a>
               ))}
             </div>
 
             {/* GitHub Stats */}
-            <div className={styles.githubStats}>
-              <p className={styles.infoLabel}>GitHub Activity</p>
-              <img src={`https://github-readme-stats.vercel.app/api?username=AmbadasGanapa&show_icons=true&theme=${ghTheme}&hide_border=true&title_color=${ghTitleColor}&icon_color=${ghTitleColor}`} alt="GitHub Stats" className={styles.ghImg} />
-            </div>
+            
           </motion.div>
 
           {/* Form */}

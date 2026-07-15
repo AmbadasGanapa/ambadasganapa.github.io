@@ -1,3 +1,4 @@
+import React from 'react';
 import { motion } from 'framer-motion';
 import { services } from '../../data/portfolioData';
 import styles from './Services.module.css';

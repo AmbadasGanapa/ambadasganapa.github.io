@@ -6,9 +6,50 @@
 .infoLabel { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: .2rem; }
 .infoItem p, .infoItem a { font-size: 0.9rem; color: var(--text-secondary); }
 .infoItem a:hover { color: var(--accent); }
-.socials { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.25rem; }
-.socials a { display: inline-flex; align-items: center; justify-content: center; width: 2.6rem; height: 2.6rem; border-radius: 999px; background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary); }
-.socials a:hover { color: var(--accent); transform: translateY(-2px); }
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-top: 0.5rem;
+  max-width: 320px;
+}
+
+.socialIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.socialIcon:hover {
+  transform: translateY(-4px);
+  color: #ffffff;
+  border-color: var(--accent);
+  background: var(--accent);
+  box-shadow: 0 10px 20px rgba(79, 70, 229, 0.25);
+}
+
+/* Custom Brand Color Hover States */
+.socialIcon[title="LeetCode"]:hover { background: #ffa116; border-color: #ffa116; }
+.socialIcon[title="GeeksforGeeks"]:hover { background: #2f8d46; border-color: #2f8d46; }
+.socialIcon[title="HackerRank"]:hover { background: #1ba94c; border-color: #1ba94c; }
+.socialIcon[title="Instagram"]:hover { background: #e1306c; border-color: #e1306c; }
+.socialIcon[title="Facebook"]:hover { background: #1877f2; border-color: #1877f2; }
+.socialIcon[title="Snapchat"]:hover { background: #fffc00; border-color: #fffc00; color: #000; }
+.socialIcon[title="Telegram"]:hover { background: #0088cc; border-color: #0088cc; }
+.socialIcon[title="Medium"]:hover { background: #000000; border-color: #000000; }
+.socialIcon[title="WhatsApp"]:hover { background: #25d366; border-color: #25d366; }
+.socialIcon[title="Email"]:hover { background: #ea4335; border-color: #ea4335; }
+.socialIcon[title="Call"]:hover { background: #34a853; border-color: #34a853; }
 .githubStats { margin-top: .5rem; }
 .ghImg { width: 100%; border-radius: 8px; }
 .form { display: flex; flex-direction: column; gap: 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; box-shadow: var(--shadow); }
