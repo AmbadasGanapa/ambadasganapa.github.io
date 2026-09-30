@@ -1,0 +1,284 @@
+.certifications {
+  background: var(--bg-secondary);
+  overflow: hidden;
+  padding: 5rem 0;
+}
+
+.sliderSectionContainer {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  box-sizing: border-box;
+}
+
+.carouselContainer {
+  position: relative;
+  margin-top: 3.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Arrow Buttons */
+.arrowBtn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.arrowLeft {
+  left: -20px;
+}
+
+.arrowRight {
+  right: -20px;
+}
+
+.arrowBtn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.45);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.arrowBtn:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Slider Window & Track */
+.sliderWindow {
+  width: 100%;
+  overflow: hidden;
+  padding: 2rem 0;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+}
+
+.sliderTrack {
+  display: flex;
+  gap: 28px; /* Must match CARD_GAP constant */
+  align-items: center;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+/* Card Styling */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--shadow);
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  position: relative;
+  cursor: pointer;
+  transform-origin: center center;
+}
+
+.cardFar {
+  transform: scale(0.85);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.cardAdjacent {
+  transform: scale(0.9);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.cardActive {
+  transform: scale(1.08);
+  opacity: 1;
+  z-index: 5;
+  border-color: var(--accent);
+  box-shadow: 0 20px 48px rgba(108, 99, 255, 0.22);
+}
+
+.card:hover {
+  border-color: var(--accent-light);
+}
+
+/* Card Image & Overlays */
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.08), rgba(0, 0, 0, 0.3));
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.cardActive:hover .imageWrapper img {
+  transform: scale(1.05);
+}
+
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cardAdjacent .cardOverlay,
+.cardFar .cardOverlay {
+  background: rgba(15, 15, 15, 0.6);
+}
+
+.viewBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(108, 99, 255, 0.85);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.3s ease forwards;
+}
+
+/* Body Content */
+.body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.year {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.body h3 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.issuer {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .arrowLeft {
+    left: -10px;
+  }
+  .arrowRight {
+    right: -10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .arrowBtn {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .arrowLeft {
+    left: -5px;
+  }
+  
+  .arrowRight {
+    right: -5px;
+  }
+  
+  .sliderWindow {
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+@media (max-width: 580px) {
+  .arrowBtn {
+    width: 38px;
+    height: 38px;
+    top: 50%;
+  }
+  
+  .arrowLeft {
+    left: 2px;
+  }
+  
+  .arrowRight {
+    right: 2px;
+  }
+  
+  .sliderWindow {
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    overflow: hidden;
+    padding: 1.5rem 0;
+  }
+
+  .cardFar,
+  .cardAdjacent {
+    display: none !important; /* Hide non-active cards on mobile */
+  }
+  
+  .card {
+    width: 100% !important;
+    min-width: 100% !important;
+    transform: none !important;
+    opacity: 1 !important;
+    filter: none !important;
+    pointer-events: auto !important;
+    box-shadow: none !important;
+  }
+  
+  .sliderTrack {
+    transform: none !important; /* Disable translation layout on mobile */
+    width: 100% !important;
+    justify-content: center;
+    gap: 0 !important;
+  }
+}

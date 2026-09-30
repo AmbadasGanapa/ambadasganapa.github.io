@@ -1,0 +1,236 @@
+.edu {
+  background: var(--bg-primary);
+}
+
+/* ── Timeline wrapper ── */
+.timeline {
+  position: relative;
+  padding: 1rem 0 2rem;
+}
+
+/* Vertical center line */
+.centerLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--accent) 8%,
+    var(--accent) 92%,
+    transparent
+  );
+  transform: translateX(-50%);
+  z-index: 0;
+}
+
+/* ── Each row ── */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  align-items: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Left card: card | dot | spacer */
+.rowLeft .card  { grid-column: 1; grid-row: 1; justify-self: end; }
+.rowLeft .dot   { grid-column: 2; grid-row: 1; justify-self: center; }
+.rowLeft .spacer{ grid-column: 3; grid-row: 1; }
+
+/* Right card: spacer | dot | card */
+.rowRight .spacer{ grid-column: 1; grid-row: 1; }
+.rowRight .dot   { grid-column: 2; grid-row: 1; justify-self: center; }
+.rowRight .card  { grid-column: 3; grid-row: 1; justify-self: start; }
+
+/* ── Card ── */
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.5rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color 0.25s ease;
+  cursor: default;
+  box-shadow: var(--shadow);
+}
+
+.card:hover {
+  border-color: var(--accent);
+}
+
+/* Top row: status + duration */
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.status {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.22rem 0.7rem;
+  border-radius: 20px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+
+.active {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.35);
+  color: #22c55e;
+}
+
+.duration {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Degree row */
+.degreeRow {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.degree {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.35;
+  margin: 0;
+}
+
+.inst {
+  font-size: 0.83rem;
+  color: var(--accent-light);
+  font-weight: 500;
+  margin: 0;
+}
+
+.desc {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* Highlight */
+.highlight {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.75rem;
+}
+
+.highlightDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Subjects */
+.subjects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.subject {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: var(--accent-dim);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  color: var(--accent-light);
+  font-weight: 500;
+}
+
+/* ── Center dot ── */
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 3px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 5px rgba(108, 99, 255, 0.15);
+  z-index: 2;
+}
+
+.dotInner {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Spacer ── */
+.spacer {
+  min-height: 1px;
+}
+
+/* ── Mobile: stack vertically ── */
+@media (max-width: 768px) {
+  .centerLine {
+    left: 18px;
+  }
+
+  .row {
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: auto;
+    margin-bottom: 2rem;
+  }
+
+  .rowLeft .card,
+  .rowRight .card {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: stretch;
+    max-width: 100%;
+  }
+
+  .rowLeft .dot,
+  .rowRight .dot {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: flex-start;
+    margin-top: 1.4rem;
+  }
+
+  .rowLeft .spacer,
+  .rowRight .spacer {
+    display: none;
+  }
+}

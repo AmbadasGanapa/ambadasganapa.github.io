@@ -1,0 +1,460 @@
+.exp {
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* ── Scene ── */
+.scene {
+  position: relative;
+  width: 100%;
+  padding: 2.5rem 0 4rem;
+  overflow: hidden;
+}
+
+/* ── Infinite marquee track ── */
+
+/* Each full train set (engine + bogies) */
+.trainSet {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 6rem 0 4rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  width: max-content;
+  animation: trainRoll 36s linear infinite;
+}
+
+@keyframes trainRoll {
+  0%   { transform: translateX(100vw); }
+  100% { transform: translateX(-100%); }
+}
+
+/* ── Engine ── */
+.engine {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.chimneyWrap {
+  position: relative;
+  width: 28px;
+  height: 40px;
+  margin-left: 30px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.chimney {
+  width: 14px;
+  height: 30px;
+  background: linear-gradient(180deg, #374151, #1f2937);
+  border-radius: 4px 4px 0 0;
+  border: 2px solid #4b5563;
+  position: relative;
+  z-index: 1;
+}
+
+.smoke {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(220, 220, 220, 0.65);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.engineBody {
+  display: flex;
+  align-items: flex-end;
+  height: 96px;
+}
+
+.engineCabin {
+  width: 56px;
+  height: 84px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  border-radius: 8px 0 0 0;
+  border: 2px solid var(--accent-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.engineWindow {
+  width: 36px;
+  height: 32px;
+  background: rgba(108, 99, 255, 0.2);
+  border-radius: 5px;
+  border: 1.5px solid var(--accent-light);
+  box-shadow: inset 0 0 8px rgba(108, 99, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.locoPilot {
+  font-size: 1.3rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.5));
+}
+
+.engineBoiler {
+  width: 96px;
+  height: 68px;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+  border-radius: 0 10px 0 0;
+  border: 2px solid var(--accent-light);
+  border-left: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 6px;
+}
+
+.trainName {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  line-height: 1.3;
+}
+
+.engineNose {
+  width: 24px;
+  height: 46px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  border-radius: 0 8px 8px 0;
+  border: 2px solid var(--accent-light);
+  border-left: none;
+  align-self: flex-end;
+}
+
+.engineWheels {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+  padding-left: 10px;
+}
+
+/* ── SVG Wheel ── */
+.wheelSvg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(108, 99, 255, 0.6));
+}
+
+/* ── Bogie wrap ── */
+.bogieWrap {
+  display: flex;
+  align-items: flex-end;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* ── Coupling between units ── */
+.coupling {
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  margin-bottom: 30px; /* align with bogie body bottom */
+  flex-shrink: 0;
+}
+
+.couplingBar {
+  width: 28px;
+  height: 6px;
+  background: linear-gradient(90deg, #4b5563, #6b7280, #4b5563);
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.couplingHead {
+  width: 8px;
+  height: 12px;
+  background: #374151;
+  border: 1.5px solid #6b7280;
+  border-radius: 2px;
+  margin-left: -1px;
+}
+
+/* ── Bogie ── */
+.bogie {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bogieBody {
+  width: 190px;
+  height: 96px;
+  background: var(--bg-card);
+  border: 2px solid var(--bogie-color, var(--accent));
+  border-radius: 10px 10px 0 0;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.65rem 0.8rem 0.45rem;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.bogieBody:hover {
+  background: var(--bg-card-hover);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.35);
+}
+
+.bogieFuture {
+  opacity: 0.65;
+  cursor: default;
+}
+
+.bogieInner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.bogieType {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--bogie-color, var(--accent));
+  font-weight: 700;
+}
+
+.bogieCompany {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.bogieDuration {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+}
+
+.bogieHint {
+  font-size: 0.6rem;
+  color: var(--bogie-color, var(--accent));
+  opacity: 0.7;
+  margin-top: auto;
+}
+
+.bogieDots {
+  font-size: 1.3rem;
+  letter-spacing: 5px;
+  color: var(--bogie-color, var(--accent));
+  margin: auto 0;
+}
+
+.bogieFutureLabel {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+}
+
+.bogieWindows {
+  display: flex;
+  gap: 8px;
+  padding: 0 0.2rem;
+}
+
+.bogieWindow {
+  flex: 1;
+  height: 18px;
+  background: rgba(108, 99, 255, 0.1);
+  border-radius: 3px;
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  box-shadow: inset 0 0 4px rgba(108, 99, 255, 0.1);
+}
+
+.bogieWheels {
+  display: flex;
+  gap: 40px;
+  margin-top: 5px;
+  padding: 0 22px;
+}
+
+/* ── Track (static, always full width) ── */
+.trackWrap {
+  position: absolute;
+  bottom: 1.8rem;
+  left: 0;
+  right: 0;
+  height: 22px;
+  z-index: 1;
+}
+
+.rail {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, #374151 0%, #9ca3af 30%, #6b7280 60%, #374151 100%);
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+.sleeper {
+  position: absolute;
+  width: 4px;
+  height: 22px;
+  background: #4b5563;
+  top: 0;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+/* ── Modal backdrop ── */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ── Modal ── */
+.modal {
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  padding: 1.75rem;
+  width: 100%;
+  max-width: 480px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modalType {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.22rem 0.65rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.modalRole {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.2rem;
+}
+
+.modalCompany {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.15rem;
+}
+
+.modalDuration {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+}
+
+.modalPoints {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 0;
+  margin: 0;
+}
+
+.modalPoints li {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.bullet {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 0.75rem;
+}
+
+.certLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  border: 1px solid;
+  padding: 0.35rem 0.85rem;
+  border-radius: 8px;
+  transition: opacity 0.2s ease;
+  width: fit-content;
+  font-weight: 500;
+}
+
+.certLink:hover { opacity: 0.75; }
+
+.modalLinks {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .bogieBody { width: 155px; height: 86px; }
+  .modal { padding: 1.25rem; }
+  .trainSet { padding: 0 3rem 0 2rem; }
+}
